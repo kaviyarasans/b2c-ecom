@@ -10,7 +10,7 @@ public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String errorMessage) {
         super(errorMessage);
     }
-    
+
     public HttpStatusCode getHttpStatus() {
         return httpStatus;
     }
