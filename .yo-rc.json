@@ -1,0 +1,12 @@
+{
+  "generator-springboot": {
+    "appName": "b2c-ecom",
+    "packageName": "com.sentryc.ecom",
+    "databaseType": "postgresql",
+    "dbMigrationTool": "flywaydb",
+    "features": [],
+    "buildTool": "maven",
+    "packageFolder": "com/sentryc/ecom",
+    "flywayMigrationCounter": 1
+  }
+}
