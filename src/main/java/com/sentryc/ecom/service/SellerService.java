@@ -30,7 +30,8 @@ public class SellerService {
     @Autowired
     private SellersRepository sellersRepository;
 
-    private Predicate<String> isSearchByNameNotPresent = (searchByName) -> searchByName == null || searchByName.isBlank();
+    private Predicate<String> isSearchByNameNotPresent =
+            (searchByName) -> searchByName == null || searchByName.isBlank();
 
     public List<Seller> getSellers(SellerFilter filter, PageInput page, SellerSortBy sortBy) {
 
@@ -129,11 +130,13 @@ public class SellerService {
 
         return switch (sortBy) {
             case SELLER_INFO_EXTERNAL_ID_ASC -> Comparator.comparing(Seller::getExternalId);
-            case SELLER_INFO_EXTERNAL_ID_DESC -> Comparator.comparing(Seller::getExternalId).reversed();
+            case SELLER_INFO_EXTERNAL_ID_DESC -> Comparator.comparing(Seller::getExternalId)
+                    .reversed();
             case NAME_ASC -> Comparator.comparing(Seller::getSellerName);
             case NAME_DESC -> Comparator.comparing(Seller::getSellerName).reversed();
             case MARKETPLACE_ID_ASC -> Comparator.comparing(Seller::getMarketplaceId);
-            case MARKETPLACE_ID_DESC -> Comparator.comparing(Seller::getMarketplaceId).reversed();
+            case MARKETPLACE_ID_DESC -> Comparator.comparing(Seller::getMarketplaceId)
+                    .reversed();
         };
     }
 }
