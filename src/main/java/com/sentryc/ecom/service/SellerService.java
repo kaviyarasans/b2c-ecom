@@ -15,6 +15,8 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -22,6 +24,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 @Service
+@Slf4j
 public class SellerService {
 
     @Autowired
@@ -42,8 +45,10 @@ public class SellerService {
         List<Sellers> sellersList = fetchProducerSellerData(filter, sellerInfosMap);
         Map<UUID, List<Sellers>> sellersMap =
                 sellersList.stream().collect(Collectors.groupingBy(Sellers::getSellerInfoId));
+        List<Seller> sellerList = buildSellerListForResponse(sellerInfosMap, sellersMap, sortBy);
 
-        return buildSellerListForResponse(sellerInfosMap, sellersMap, sortBy);
+        log.info("Seller data fetched successfully for given query filter");
+        return sellerList;
     }
 
     private List<SellerInfos> fetchSellerInfoData(SellerFilter filter, PageInput page, SellerSortBy sortBy) {
